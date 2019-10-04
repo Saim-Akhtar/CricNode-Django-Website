@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Cricket Website {% endblock %}</title>
+    {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'cric/style.css' %}?{% now "U" %}">
+    <link rel="shortcut icon" href="{% static 'cric/images/cric.png' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=DM+Serif+Display|DM+Serif+Text|Lato|Oswald&display=swap" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+</head>
+<body>
+<div class="navigation navbar-fixed">
+      <nav class="blue">
+        <div class=" nav-wrapper row">
+          <div class="col l2">
+
+            <a href="{% url 'cric:index' %}" class="brand-logo">CricNode</a>
+            <a href="#!" data-target="mobile-nav" class="sidenav-trigger">
+              <i class="material-icons">menu</i>
+            </a>
+          </div>
+          <ul id="nav-mobile" class="col l10 xl8 right hide-on-med-and-down">
+            <li><a href="{% url 'cric:home' %}" class="nav_options">Home</a></li>
+              <li><a href="{% url 'cric:index' %}" class="nav_options">Current Fixtures</a></li>
+            <li><a href="{% url 'cric:liveMatches' %}" class="nav_options">Live Matches</a></li>
+              <li><a href="{% url 'cric:Series-List' %}" class="nav_options">Series</a></li>
+            <li><a href="{% url 'cric:Teams-List' %}" class="nav_options">Teams</a></li>
+              <li><a href="{% url 'cric:series' 2697 %}" class="nav_options">ICC World Cup 2019</a></li>
+
+
+          </ul>
+        </div>
+
+      </nav>
+    </div>
+
+    <!-- MOBILE NAV -->
+    <div class="sidenav" id="mobile-nav">
+
+      <span><i class="material-icons closing right">close</i></span>
+      <div class="clearfix"></div>
+      <ul class=" collection">
+        <li class="blue collection-item"><a href="{% url 'cric:home' %}" class="nav_options">Home</a></li>
+          <li class="blue collection-item"><a href="{% url 'cric:index' %}" class="nav_options">Current Fixtures</a></li>
+          <li class="blue collection-item"><a href="{% url 'cric:liveMatches' %}" class="nav_options">Live Matches</a></li>
+          <li class="blue collection-item"><a href="{% url 'cric:Series-List' %}" class="nav_options">Series</a></li>
+          <li class="blue collection-item"><a href="{% url 'cric:Teams-List' %}" class="nav_options">Teams</a></li>
+          <li class="blue collection-item"><a href="{% url 'cric:series' 2697 %}" class="nav_options">ICC World Cup 2019</a></li>
+      </ul>
+    </div>
+
+    {% block body %}
+    {% endblock %}
+</body>
+<script>
+    $(document).ready(function () {
+    $('.sidenav')
+      .sidenav()
+      .on('click tap', '.closing', () => {
+        $('.sidenav').sidenav('close');
+      });
+          $('.tabs').tabs({
+          swipeable: false
+          });
+
+  });
+</script>
+</html>

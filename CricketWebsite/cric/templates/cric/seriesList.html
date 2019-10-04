@@ -1,0 +1,18 @@
+{% extends 'cric/base.html' %}
+
+{% block body %}
+
+<div class="container paddingContainer">
+    <h2 class="blue-text heading center animatedHead">List Of Series</h2>
+    <div class="container">
+    <ul class="collection center leadAnimated">
+        {% for sr in seriesList %}
+        <li class="collection-item">
+            <a href="{% url 'cric:series' sr.Series_Id %}" class="heading">{{sr.Series_Name}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+</div>
+
+{% endblock %}

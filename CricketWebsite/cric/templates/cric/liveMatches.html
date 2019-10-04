@@ -1,0 +1,55 @@
+{% extends 'cric/base.html' %}
+
+
+{% block body %}
+<div class="container paddingContainer">
+<h2 class="blue-text heading center animatedHead">Live Matches</h2>
+    {% if error %}
+    <br>
+    <br>
+    <h4 class="heading center red-text leadAnimated">**{{error}}**</h4>
+    {% endif %}
+
+    {% for series in live_stream %}
+
+    <li>
+        <h4 ><a href="{% url 'cric:series' series.Series_Id %}" class="heading red-text text-lighten-2 fromLeft">{{series.Series_Title}}</a></h4>
+
+<div class="row fromRight">
+
+
+            {% for match in series.Live_Matches %}
+
+        <div class="col s12 m6">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">{{match.Team1}} vs {{match.Team2}}</span>
+          <p>{{match.Desc}}</p>
+            {% if match.Toss %}
+
+            <p>Toss: {{match.Toss}}</p>
+            {% endif %}
+
+            {% if match.Batting_Team %}
+
+            <p class="left">{{match.Batting_Team}}</p>
+
+            <p class="right">{{match.Batting_Score}}/{{match.Batting_Wkts}} ({{match.Batting_Overs}})</p>
+            <p class="clearfix"></p>
+            {% endif %}
+            <p>{{match.State}}</p>
+            <p>{{match.Status}}</p>
+        </div>
+        <div class="card-action">
+          <a href="{{match.Details}}" target="_blank">Match Details</a>
+
+        </div>
+      </div>
+    </div>
+            {% endfor %}
+    </div>
+    </li>
+{% endfor %}
+
+</div>
+{% endblock %}

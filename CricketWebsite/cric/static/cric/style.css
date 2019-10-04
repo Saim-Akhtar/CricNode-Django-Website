@@ -1,0 +1,85 @@
+*{
+font-family: 'Lato', sans-serif;
+}
+html{
+    background: url('images/stadium.jpg') no-repeat;
+    background-size: cover
+}
+
+.heading{
+font-family: 'DM Serif Text', serif !important;
+}
+.brand-logo{
+font-family: 'Oswald', sans-serif !important;
+font-weight: bolder;
+font-size: 2.5em !important;
+color: rgba(255,255,255,0.99) !important
+}
+.nav_options{
+font-family: 'Lato', sans-serif;
+font-weight: bold;
+font-size: 1.26em !important;
+color: rgba(255,255,255,0.99) !important
+}
+.venue_content{
+    height: 10em !important;
+}
+.player_content{
+    height: 9em !important;
+}
+.desc{
+    padding-top: 10px;
+    margin-left: 10px;
+}
+
+.lead{
+    font-size: 2em;
+}
+.closing{
+    cursor: pointer
+}
+.paddingContainer{
+    position: relative;
+    top: 1em;
+    padding: 0.5em;
+}
+.animatedHead{
+    position: relative;
+    animation-name: magic;
+    animation-duration: 2s;
+    top: 0em;
+}
+.leadAnimated{
+    position: relative;
+    animation-name: magicTitle;
+    animation-duration: 2s;
+    top: 0em;
+}
+.fromLeft{
+    position: relative;
+    animation-name: magicLeft;
+    animation-duration: 2s;
+    left: 0em;
+}
+.fromRight{
+    position: relative;
+    animation-name: magicRight;
+    animation-duration: 2s;
+    right: 0em;
+}
+@keyframes magic {
+  0% {top: -2em;}
+  100% {top: 0em;}
+}
+@keyframes magicTitle {
+  0% {top: 3em;}
+  100% {top: 0em;}
+}
+@keyframes magicLeft {
+  0% {left: -5em;}
+  100% {left: 0em;}
+}
+@keyframes magicRight {
+  0% {right: -5em;}
+  100% {right: 0em;}
+}

@@ -1,0 +1,30 @@
+{% extends 'cric/base.html' %}
+
+{% block body %}
+
+<div class="container paddingContainer">
+
+    <h2 class="blue-text heading center animatedHead">Teams</h2>
+<table class="highlight container striped white">
+        <thead>
+          <tr>
+              <th>Teams</th>
+              <th class="right">Captains</th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for team in teamsList %}
+          <tr>
+
+            <td><a href="{% url 'cric:Team' team.Series_Id team.Team_Id %}">{{team.Team_Name}}</a></td>
+            <td class="right">{{team.Team_Captain}}</td>
+
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+</div>
+
+{% endblock %}

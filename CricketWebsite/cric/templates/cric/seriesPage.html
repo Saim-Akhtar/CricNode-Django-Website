@@ -1,0 +1,134 @@
+{% extends 'cric/base.html' %}
+{% block title %}
+Series
+{% endblock %}
+
+{% block body %}
+
+<br>
+<div class="container paddingContainer z-depth-1 seriesContainer">
+    <h2 class="blue-text heading center animatedHead">{{seriesName}}</h2>
+<div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a href="#schedule">Schedule</a></li>
+        <li class="tab col s3"><a href="#teams" >Teams</a></li>
+
+        <li class="tab col s3"><a href="#venues" class="active">Venues</a></li>
+        {% if points_error %}
+        <li class="tab col s3 disabled"><a href="#pointsTable">Points Table</a></li>
+        {% else %}
+        <li class="tab col s3"><a href="#pointsTable">Points Table</a></li>
+        {% endif %}
+      </ul>
+    </div>
+    <div id="schedule" class="col s12">
+<h2 class="heading red-text center leadAnimated">Matches Schedule</h2>
+        <table class="highlight striped white paddingContainer">
+        <thead>
+          <tr>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Match Details</th>
+              <th>Venue</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for match in matches %}
+          <tr>
+            <td>{{match.Match_Date}}</td>
+            <td>{{match.Match_Time}}</td>
+            <td>
+                <h6>{{match.Team1_Name}} vs {{match.Team2_Name}}, {{match.Match_Desc}}</h6>
+                <p class="red-text"><a href="{{match.Details}}" target="_blank">{{match.Status}}</a></p>
+            </td>
+            <td>{{match.Venue_Name}} {{match.Venue_Location}}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+    <div id="teams" class="col s12">
+        <br>
+        <h2 class="heading red-text center leadAnimated">Teams</h2>
+        <ul class="collection container center">
+            {% for team in teams %}
+            <li class="collection-item"><a href="{% url 'cric:Team' team.Series_Id team.team_id %}">{{team.Team_Name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="venues" class="col s12 container">
+<h2 class="heading red-text center leadAnimated">Venues</h2>
+<br>
+
+ <div class="row">
+     {% for venue in venues %}
+    <div class="col s12 m4">
+      <div class="card">
+        <div class="card-image">
+          <img src="{{venue.Venue_img}}" height="300">
+
+        </div>
+        <div class="card-content venue_content">
+            <span class="card-title">{{venue.Venue_Name}}</span>
+            <p>{{venue.Venue_Location}}</p>
+        </div>
+        <div class="card-action">
+          <a href={{venue.Venue_url}}" target="_blank" class="btn btn-small red white-text right">Details</a>
+            <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+     {% endfor %}
+  </div>
+
+
+
+    </div>
+    <div id="pointsTable" class="col s12">
+<h2 class="heading red-text center leadAnimated">Points Table</h2>
+        <!--{% if points_error %}-->
+        <!--<h4 class="heading">{{points_error}}</h4>-->
+
+        <!--{% else %}-->
+        <div class="card white black-text points_table">
+
+            <table>
+                 <thead class="grey">
+          <tr>
+              <th colspan="10">Teams</th>
+              <th>Match</th>
+              <th>Won</th>
+              <th>Lost</th>
+              <th>Teid</th>
+              <th>NR</th>
+              <th>Pts</th>
+              <th>NRR</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for points in pointsTable %}
+          <tr>
+            <td class="blue-text" colspan="10">{{points.Team}}</td>
+            <td>{{points.played}}</td>
+            <td>{{points.won}}</td>
+            <td>{{points.lose}}</td>
+            <td>{{points.tied}}</td>
+            <td>{{points.nr}}</td>
+            <td>{{points.points}}</td>
+            <td>{{points.nrr}}</td>
+          </tr>
+        {% endfor %}
+                  </tbody>
+                </table>
+
+        </div>
+        <!--{% endif %}-->
+    </div>
+  </div>
+
+</div>
+{% endblock %}

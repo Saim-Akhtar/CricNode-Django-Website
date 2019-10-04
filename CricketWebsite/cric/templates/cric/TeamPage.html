@@ -1,0 +1,33 @@
+{% extends 'cric/base.html' %}
+
+{% block body %}
+
+<div class="container paddingContainer">
+
+<h3 class="heading red-text">{{TeamName}}</h3>
+
+<div class="row">
+     {% for player in team %}
+    <div class="col s12 m3">
+      <div class="card">
+        <div class="card-image">
+          <img src="{{player.Pic_url}}" height="200">
+
+        </div>
+        <div class="card-content player_content">
+            <span class="card-title">{{player.Name}}</span>
+            <p>{{player.Role}}</p>
+            <p>{{player.Style}}</p>
+        </div>
+        <div class="card-action">
+          <a href={{player.Link}} target="_blank" class="btn btn-small red white-text right">Details</a>
+            <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+     {% endfor %}
+  </div>
+
+</div>
+
+{% endblock %}
