@@ -1,3 +1,3 @@
 # CricNode-Django-Website
 
-Wokring on API
+CricBuzz API used for fetching data is deprecated
